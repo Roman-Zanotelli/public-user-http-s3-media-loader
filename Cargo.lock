@@ -1427,7 +1427,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "public_user_http_s3_media_loader"
+name = "public-user-http-s3-media-loader"
 version = "0.1.0"
 dependencies = [
  "aws-config",
