@@ -33,18 +33,17 @@ async fn main() {
 
  async fn image(Path((listing_id, image_id)): Path<(String, String)>) -> impl IntoResponse{ //Image Handler
     //Rebuilds the path formatted to the S3 bucket structure
-    // this is currently the same as the original but editing this formatter allows handling different s3 bucket structures from http api structures
-    let file_path = format!("./listings/{}/media/image/{}", listing_id, image_id);
+    let file_path = format!("./listing/{}/image/{}", listing_id, image_id);
     //Creates a new response generated from my custom stream object
     //The MediaStream::get function returns a Stream object for the related file path
-    Response::new(Body::from_stream(MediaStream::get(&file_path)))
+    Response::new(Body::from_stream(MediaStream::get(&file_path)).into_data_stream())
  } //the video and thumnail functions work functionally the same
  
  async fn video(Path((listing_id, image_id)): Path<(String, String)>) -> impl IntoResponse{ //Video Handler
-    let file_path = format!("./listings/{}/media/video/{}", listing_id, image_id);
-    Response::new(Body::from_stream(MediaStream::get(&file_path)))
+    let file_path = format!("./listing/{}/video/{}", listing_id, image_id);
+    Response::new(Body::from_stream(MediaStream::get(&file_path)).into_data_stream())
  }
  async fn thumnail(Path((listing_id, image_id)): Path<(String, String)>) -> impl IntoResponse{ //Thumbnail Handler
-    let file_path = format!("./listings/{}/media/thumbanil/{}", listing_id, image_id);
-    Response::new(Body::from_stream(MediaStream::get(&file_path)))
+    let file_path = format!("./listing/{}/thumbanil/{}", listing_id, image_id);
+    Response::new(Body::from_stream(MediaStream::get(&file_path)).into_data_stream())
  }
