@@ -42,7 +42,7 @@ async fn main() {
    let file_path = format!("./{}/image/{}", listing_id, image_id);
     //Creates a new response generated from my custom stream object
     //The MediaStream::get function returns a Stream object for the related file path
-   match MediaStream::get(&file_path, None, parse_range_header(req.headers().get(RANGE))){
+   match MediaStream::get(&file_path, None){
         Ok(stream) =>  Response::new(Body::from_stream(stream)),
         Err(_) => todo!(),
    }
@@ -50,25 +50,22 @@ async fn main() {
  
  async fn video(Path((listing_id, video_id,video_version, part)): Path<(String, String, String, String)>, req: Request<Body>) -> impl IntoResponse{ //Video Handler
    let file_path = format!("./{}/video/{}/{}", listing_id, video_id, video_version);
-   match MediaStream::get(&file_path, Some(&part), parse_range_header(req.headers().get(RANGE))){
+   match MediaStream::get(&file_path, Some(&part)){
       Ok(stream) =>  Response::new(Body::from_stream(stream)),
       Err(_) => todo!(),
    }
  }
  async fn playlist(Path((listing_id, video_id)): Path<(String, String)>, req: Request<Body>) -> impl IntoResponse{ //Video Handler
   let file_path = format!("./{}/video/{}", listing_id, video_id);
-  match MediaStream::get(&file_path, None, parse_range_header(req.headers().get(RANGE))){
+  match MediaStream::get(&file_path, None){
      Ok(stream) =>  Response::new(Body::from_stream(stream)),
      Err(_) => todo!(),
   }
 }
  async fn thumnail(Path((listing_id, thumnail_id)): Path<(String, String)>, req: Request<Body>) -> impl IntoResponse{ //Thumbnail Handler
    let file_path = format!("./{}/thumbanil/{}", listing_id, thumnail_id);
-   match MediaStream::get(&file_path,None, parse_range_header(req.headers().get(RANGE))){
+   match MediaStream::get(&file_path,None){
       Ok(stream) =>  Response::new(Body::from_stream(stream)),
       Err(_) => todo!(),
    }
  }
- fn parse_range_header(range_header: Option<&HeaderValue>) -> (usize, usize){
-  todo!()
-}
