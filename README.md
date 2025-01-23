@@ -5,5 +5,8 @@ Handles the media loading requests of all publicily accessible user traffic, req
 
 
 # Diagram
-** Note: Cache invalidation and other systems NOT DIRECTLY related to public media retrieval are handled by other services
 ![public-user-http-s3-media-loader-diagram excalidraw](https://github.com/user-attachments/assets/97f95c10-2a48-413b-9448-dbfa7da68df5)
+
+
+**Note:
+Cache invalidation and other interactions NOT DIRECTLY RELATED to public media retrieval are handled elsewhere
