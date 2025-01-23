@@ -1,10 +1,10 @@
-mod media;
 mod s3loader;
-use hyper::header::RANGE;
-use media::MediaStream; //Custom Stream
+mod datamgr;
+mod datastream;
 use axum::{ //Http library
-    body::Body, extract::{Path, Request}, http::HeaderValue, response::{IntoResponse, Response}, routing::get, Router
+    body::Body, extract::{Path, Request}, response::{IntoResponse, Response}, routing::get, Router
 };
+use datastream::GlobalDataStream;
 
 //Important Rust Notes:
 //This is async meaning many fuction return Futures, if you see .await that is when the function starts execution and begins blocking the main thread.
@@ -14,7 +14,13 @@ use axum::{ //Http library
 
 #[tokio::main]
 async fn main() {
-    //Route requests to the different handlers
+    match datamgr::_mem_map_setup(){
+      Ok(_) =>{},
+      Err(err) => {
+        todo!()
+      }
+    }
+    //Route requests to the di  fferent handlers
     //The symbol ":" in the path denotes a variable extracted from the url, matching the variable of the handler function
     //  for example "./listing/:listing_id/media/image/:image_id" extracts the handler image variables from ":listind_id" value and ":image_id" value to their respective image(Path((listing_id, image_id)) function paramaters
     let app = Router::new()
@@ -42,7 +48,7 @@ async fn main() {
    let file_path = format!("./{}/image/{}", listing_id, image_id);
     //Creates a new response generated from my custom stream object
     //The MediaStream::get function returns a Stream object for the related file path
-   match MediaStream::get(&file_path, None){
+   match GlobalDataStream::new(&file_path, None).await{
         Ok(stream) =>  Response::new(Body::from_stream(stream)),
         Err(_) => todo!(),
    }
@@ -50,21 +56,21 @@ async fn main() {
  
  async fn video(Path((listing_id, video_id,video_version, part)): Path<(String, String, String, String)>, req: Request<Body>) -> impl IntoResponse{ //Video Handler
    let file_path = format!("./{}/video/{}/{}", listing_id, video_id, video_version);
-   match MediaStream::get(&file_path, Some(&part)){
+   match GlobalDataStream::new(&file_path, Some(&part)).await{
       Ok(stream) =>  Response::new(Body::from_stream(stream)),
       Err(_) => todo!(),
    }
  }
  async fn playlist(Path((listing_id, video_id)): Path<(String, String)>, req: Request<Body>) -> impl IntoResponse{ //Video Handler
   let file_path = format!("./{}/video/{}", listing_id, video_id);
-  match MediaStream::get(&file_path, None){
+  match GlobalDataStream::new(&file_path, None).await{
      Ok(stream) =>  Response::new(Body::from_stream(stream)),
      Err(_) => todo!(),
   }
 }
  async fn thumnail(Path((listing_id, thumnail_id)): Path<(String, String)>, req: Request<Body>) -> impl IntoResponse{ //Thumbnail Handler
    let file_path = format!("./{}/thumbanil/{}", listing_id, thumnail_id);
-   match MediaStream::get(&file_path,None){
+   match GlobalDataStream::new(&file_path,None).await{
       Ok(stream) =>  Response::new(Body::from_stream(stream)),
       Err(_) => todo!(),
    }
