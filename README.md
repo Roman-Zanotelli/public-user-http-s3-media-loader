@@ -5,5 +5,4 @@ Handles the media loading requests of all publicily accessible user traffic, req
 
 
 # Diagram
-public-user-http-s3-media-loader-diagram.excalidraw file contains a high level overview of planned system interaction
-https://excalidraw.com/
+![public-user-http-s3-media-loader-diagram excalidraw](https://github.com/user-attachments/assets/97f95c10-2a48-413b-9448-dbfa7da68df5)
