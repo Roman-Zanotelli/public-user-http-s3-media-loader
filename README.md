@@ -4,7 +4,7 @@ Handles the media loading requests of all publicily accessible user traffic, req
 
 
 
-# High Level Diagram
+# High-Level System Interaction Overview
 ![public-user-http-s3-media-loader-diagram excalidraw](https://github.com/user-attachments/assets/97f95c10-2a48-413b-9448-dbfa7da68df5)
 
 
