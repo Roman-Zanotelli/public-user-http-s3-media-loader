@@ -9,4 +9,4 @@ Handles the media loading requests of all publicily accessible user traffic, req
 
 
 **Note:
-Cache invalidation and other interactions NOT DIRECTLY RELATED to public media retrieval are handled elsewhere
+Cache invalidation and other interactions NOT DIRECTLY RELATED TO PUBLIC MEDIA RETRIEVAL are handled elsewhere
