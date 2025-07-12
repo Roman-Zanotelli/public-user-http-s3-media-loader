@@ -1,7 +1,11 @@
-# public-user-http-s3-media-loader
+# public-user-http-s3-media-loader (Deprecated/Archived)
 Handles the media loading requests of all publicily accessible user traffic, requests are made from the client through http and responded with a data stream containing files stored on the s3 backend. All traffic and interaction is isolated to public access, sensitive interactions/transactions are out of scope of this service.
 
+This project was the first iteration of many while attempting to develop cost effective hybrid infastructure using private and public S3-compatible infastructure
 
+For my purposes the scalability of hybrid/public clouds barely outweight the benifits of a completely private minio infastrucutre used for S3-compatible storage on local disks
+
+This repo serves as a milestone/archive of my journey as a cloud architect and develop and does NOT represent my current systems infastructure, but rather the inital phase of my journey.
 
 
 # High-Level System Interaction Overview
