@@ -9,6 +9,9 @@ This repo serves as a milestone/archive of my journey as a cloud architect and d
 
 Otherwise this system has been heavily reiterated resembling nothing similar in its current state.
 
+[Most Recent (Public) Version](https://github.com/Roman-Zanotelli/media-cache-envoy-ext-authz) **[Also Deprecated]**
+
+
 
 # High-Level System Interaction Overview
 ![public-user-http-s3-media-loader-diagram excalidraw](https://github.com/user-attachments/assets/97f95c10-2a48-413b-9448-dbfa7da68df5)
