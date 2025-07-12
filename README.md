@@ -5,7 +5,7 @@ This project was the first iteration of many while attempting to develop cost ef
 
 For my purposes the scalability of hybrid/public clouds barely outweight the benifits of a completely private minio infastrucutre used for S3-compatible storage on local disks
 
-This repo serves as a milestone/archive of my journey as a cloud architect and develop and does NOT represent my current systems infastructure, but rather the inital phase of my journey.
+This repo serves as a milestone/archive of my journey as a cloud architect and developer and does NOT represent my current systems infastructure, but rather the inital phase of my journey.
 
 
 # High-Level System Interaction Overview
